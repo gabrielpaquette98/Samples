@@ -19,12 +19,35 @@ This second iteration uses a three-dimensional array of density values. These va
 I found this specific view to be interesting, it reminded me of Koholint Island, in Link's Awakening. The specific deformation on mountain tops can be seen clearly:
 ![Koholint](https://github.com/gabrielpaquette98/Samples/blob/main/assets/MarchingCubesMountainTop.png)
 
+
 ### Generating 2D dungeons
 
 ![Escape The Angamando](https://github.com/gabrielpaquette98/Samples/blob/main/assets/EscapeTheAngamando.png)
 
-During a game making competition, I made an algorithm to generate a 2D maze-like dungeon with rooms randomly pieced together and then placed in a similar structure as the first Zelda game or as The Binding of Isaac. The game, filled with bugs and anything that comes with making a game in two days with little sleep, can be played here: https://gabendalf.itch.io/escape-the-angamando . The project evolved and eventually became an important project at Poly Games, a student association about making games at Polytechnique Montreal. I launched the project with another student, and I remade the entire level generation algorithm, it would now be based on 4x4 floor pieces with no walls, allowing for narrow hallways as well as bigger rooms. The screenshot shows a version of the first level. It can be randomly regenerated from the editor with a button, the 4x4 floor piece can be set to any size, and the algorithm that places these pieces can be entirely replaced, as well as which assets it uses. The Strategy design pattern was implemented to allow any other student to implement their own strategy for placing the floor pieces and adapt it to different contexts, like levels in a forest or in a cave. The current strategy shown in the screenshot is the "Branching Out" strategy: it starts at a specific location, it randomly invalidates neighboring floor positions and places a floor piece where it can. Based on the parameters, it can generate more hallways or bigger rooms. Walls are then placed, a starting and a finishing floor piece is selected, and the level starts
+During a game making competition, I made an algorithm to generate a 2D maze-like dungeon with rooms randomly pieced together and then placed in a similar structure as the first Zelda game or as The Binding of Isaac. The game, filled with bugs and anything that comes with making a game in two days with little sleep, can be played here: https://gabendalf.itch.io/escape-the-angamando . The project evolved and eventually became an important project at Poly Games, a student association about making games at Polytechnique Montreal. I launched the project with another student, and I remade the entire level generation algorithm, it would now be based on 4x4 floor pieces with no walls, allowing for narrow hallways as well as bigger rooms. It started out as a text-based prototype, and eventually was integrated into Unity. The screenshot shows a version of the first level. It can be randomly regenerated from the editor with a button, the 4x4 floor piece can be set to any size, and the algorithm that places these pieces can be entirely replaced, as well as which assets it uses. The Strategy design pattern was implemented to allow any other student to implement their own strategy for placing the floor pieces and adapt it to different contexts, like levels in a forest or in a cave. The current strategy shown in the screenshot is the "Branching Out" strategy: it starts at a specific location, it randomly invalidates neighboring floor positions and places a floor piece where it can. Based on the parameters, it can generate more hallways or bigger rooms. Walls are then placed, a starting and a finishing floor piece is selected, and the level starts.
 
+
+## Cel Shading
+
+When learning at school how OpenGL and shaders work, a teacher mentioned how cel shading works as an example of fragment shader. The topic interested me, so I implemented it as described in OpenGL. Later, I used Shader Graph in Unity to port this specific shader. The first result, when applied to a modified version of a humanoid character I made, gave me this:
+
+![Basic Cel Shading](https://github.com/gabrielpaquette98/Samples/blob/main/assets/CelShading-StraightToShaderGraph.png)
+
+It was a very basic version of cel shading. It couldn't handle lights or shadows at all, but the principles were there: a light source is used with a dot product to determine how much intensity a specific fragment should have, and a sharp color ramp is multiplied to the color to achieve a cel shaded look. I decided to improve on it and made the following versions:
+
+![Cel Shading](https://github.com/gabrielpaquette98/Samples/blob/main/assets/CelShading.png)
+
+![Cel Shading Outline](https://github.com/gabrielpaquette98/Samples/blob/main/assets/CelShadingLined.png)
+
+![Lit Cel Shading](https://github.com/gabrielpaquette98/Samples/blob/main/assets/CelShadingLit.png)
+
+![Lit Cel Shading Outline](https://github.com/gabrielpaquette98/Samples/blob/main/assets/CelShadingLitLined.png)
+
+The first two versions add a bright highlight by adding a second gradient on top of multiplying the color to the ramp gradient, which gives a much less flat look.
+
+The last two versions react better to shadows, and the highlight is implemented differently. Instead of an added gradient, it works by using a Fresnel effect multiplied by the dot product of the normal of the fragment and the light direction. Instead of adding a brighter cel, it adds a more realistic increase in light intensity based on where the light is.  
+
+The Fresnel effect is a very versatile effect, and by using it to sample a gradient, it is very easy to make the outline seen on the sphere. However, this method of making an outline does not necessarily produce a perfect outline on more complex models like this character. It adds many thicker or thinner lines depending on the normals, and it could make a very stylized outline if it is used alongside another outline method that produces a minimum outline thickness. It reminded me a lot about the bold outlines from Okami, a very beautiful and stylized game.
 
 ## Space Distortion
 ![Space Distortion](https://github.com/gabrielpaquette98/Samples/blob/main/assets/SpaceDistortion.gif)
