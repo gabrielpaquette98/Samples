@@ -2,6 +2,12 @@ Hello there!
 
 I made this page to show some of the things I made for fun:
 
+## Sea of triangles
+![Sea of triangles](https://github.com/gabrielpaquette98/Samples/blob/main/assets/DigitalSea.gif)
+
+This one was to try out geometry shaders for the first time. It also renders all the triangles with a unique color into a buffer that is then used to generate the white outlines, any pixel in that buffer with neighbors of different colors generates a white outline in a post processing pass. 
+
+
 ## Procedural Generation
 
 This is a subject that fascinated me since the first time I played Minecraft. During my studies as a software engineer, one of the first things I tried was making a clone of this game in the Unity engine. I quickly started to add my own ideas and focused on a round world.
