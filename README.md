@@ -8,6 +8,10 @@ I made this page to show some of the things I made for fun:
 This one was to try out geometry shaders for the first time. It also renders all the triangles with a unique color into a buffer that is then used to generate the white outlines, any pixel in that buffer with neighbors of different colors generates a white outline in a post processing pass. 
 
 
+https://github.com/user-attachments/assets/004eb1e5-85a9-432c-8b94-9769d0716ad2
+
+
+
 ## Procedural Generation
 
 ### Isocahedron
