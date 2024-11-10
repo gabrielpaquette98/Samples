@@ -7,9 +7,10 @@ I made this page to show some of the things I made for fun:
 
 This one was to try out geometry shaders for the first time. It also renders all the triangles with a unique color into a buffer that is then used to generate the white outlines, any pixel in that buffer with neighbors of different colors generates a white outline in a post processing pass. 
 
-
+## Équistellaire
 https://github.com/user-attachments/assets/004eb1e5-85a9-432c-8b94-9769d0716ad2
 
+Équistellaire is a game I made in two days during a game jam with two other programmers and a sound designer. I felt like it needed an effect that would indicate that the level is wiped and changed to a new level with a new layout, so I made the effect where the stars rotate and stretch between each level. It was a bit before I got into shaders and post processing passes so it uses a TrailRenderer for each star. It's not quite optimized, but it got the job done for the jam!
 
 
 ## Procedural Generation
